@@ -1,17 +1,50 @@
-import { ITodo } from "../types";
+import { useState } from 'react';
+import { Todo } from "../types";
+import { observer } from 'mobx-react-lite';
 
 interface TodoItemProps {
-    todo: ITodo,
-    deleteTodoItem: (id: string) => void,
-
+    todo: Todo;
+    deleteTodoItem: (todo: Todo) => void;
+    updateTodoItem: (value: string, id: string) => void;
 }
 
-export default function TodoItem({ todo, deleteTodoItem}: TodoItemProps): JSX.Element {
-   return (
+function TodoItem({ todo, deleteTodoItem, updateTodoItem }: TodoItemProps): JSX.Element {
+    
+    const [editable, setEditable] = useState(false);
+    
+    const editClickHandler = () => {
+        setEditable(true);
+    }
+
+    const changeHadler = (e: React.ChangeEvent<HTMLInputElement>) => {
+        // updateTodoItem(e.target.value, id)
+        todo.title = e.target.value;
+    }
+
+    return (
     <li key={todo.id} className="task">
-        <div className="task__text">{todo.attributes.title}</div>
-        <button className="btn-reset btn btn-edit">Edit</button>
-        <button className="btn-reset btn btn-delete" onClick={() => deleteTodoItem(todo.id)}>Del</button>
+        <input
+            value={todo.title}
+            readOnly={!editable}
+            onChange={changeHadler}
+            className="task__input"
+        />
+        {!editable  && 
+            <button 
+                className="btn-reset btn btn-edit"
+                onClick={editClickHandler}
+                >
+                    Edit
+                </button>}
+        {editable && 
+            <button 
+                className="btn-reset btn btn-save"
+            >
+                Save
+            </button>}
+        <button className="btn-reset btn btn-delete" onClick={() => deleteTodoItem(todo)}>Del</button>
     </li>
    );
 }
+
+export default observer(TodoItem)

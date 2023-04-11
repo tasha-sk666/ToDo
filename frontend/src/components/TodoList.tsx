@@ -1,19 +1,19 @@
 import axios from 'axios';
-import { ITodo } from "../types";
+import { Todo } from "../types";
 import TodoItem from "./TodoItem";
 import { observer } from "mobx-react-lite";
 import { store } from "../store";
 
-export interface ToDoListProps {
-    todos: ITodo[];
-}
-
-function TodoList({todos}: ToDoListProps): JSX.Element {
-    const deleteTodoItem = async (id: string) => {
-        return await axios.delete(`http://127.0.0.1:1337/api/todos/${id}`)
+function TodoList(): JSX.Element {
+    const deleteTodo = (todo: Todo) => {
+        store.deleteTodo(todo);
     }
 
-    if (!store.addTodo.length) {
+    const updateTodo = (title: string, id: string) => {
+        console.log(title, id)
+    }
+
+    if (!store.todos.length) {
         return (
             <div>
                 TODO LIST IS EMPTY
@@ -23,7 +23,7 @@ function TodoList({todos}: ToDoListProps): JSX.Element {
     return (
         <ul className="list-reset tasks__list">
             {store.todos.map(todo => (
-                <TodoItem key={todo.id} todo={todo} deleteTodoItem={deleteTodoItem}/>
+                <TodoItem key={todo.id} todo={todo} deleteTodoItem={deleteTodo} updateTodoItem={updateTodo}/>
             ))}
         </ul>
     );

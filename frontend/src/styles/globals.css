@@ -43,6 +43,10 @@ body {
   background-color: #ff5757;
 }
 
+.btn-save {
+  background-color: rgb(119, 243, 152);
+}
+
 .btn:hover {
   color: #fff;
 }
@@ -79,7 +83,9 @@ body {
   gap: 30px;
 }
 
-.task__text {
+.task__input {
+  border: none;
+  outline: none;
   color: #294cbd;
 }
 
