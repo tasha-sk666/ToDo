@@ -21,8 +21,8 @@ class TodoStore {
         this.todos = this.todos.filter((item) => item.id !== todo.id)
     }
 
-    updateTodo(valuue: string, id: string) {
-
+    updateTodo(value: string, todo: Todo) {
+        todo.title = value;
     }
   }
   

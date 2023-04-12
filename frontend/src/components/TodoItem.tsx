@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Todo } from "../types";
 import { observer } from 'mobx-react-lite';
+import { action } from 'mobx';
+import { store } from "../store";
 
 interface TodoItemProps {
     todo: Todo;
@@ -17,8 +19,7 @@ function TodoItem({ todo, deleteTodoItem, updateTodoItem }: TodoItemProps): JSX.
     }
 
     const changeHadler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        // updateTodoItem(e.target.value, id)
-        todo.title = e.target.value;
+        store.updateTodo(e.target.value, todo)
     }
 
     return (
