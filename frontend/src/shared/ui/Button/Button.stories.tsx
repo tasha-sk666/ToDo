@@ -23,7 +23,18 @@ export const Primary: Story = {
       children: 'Text',
     },
   };
+export const Outline: Story = {
+    args: {
+      children: 'Text',
+      theme: ButtonTheme.OUTLINE_RED,
+      size: ButtonSize.M
+    },
+  };
 
+// Outline.args = {
+//     children: 'Text',
+//     theme: ButtonTheme.OUTLINE,
+// };
 // export const Primary = Template.bind({});
 // Primary.args = {
 //     children: 'Text',

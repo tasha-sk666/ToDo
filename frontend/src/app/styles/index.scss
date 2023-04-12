@@ -3,9 +3,7 @@
 @import "reset";
 @import "./variables/global";
 
-.app,
-.app_modal,
-.app_drawer {
+.app {
     color: var(--primary-color);
     font: var(--font-m);
 }
@@ -45,7 +43,7 @@
 }
 
 body {
-    font-size: 18px;
+    // font-size: 18px;
     min-height: 100vh;
   }
   
