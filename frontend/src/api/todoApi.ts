@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ITodo } from "../types";
+import { Todo } from "../types";
 
 export const BACKEND_URL = "http://localhost:1337"
     // process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:1337";

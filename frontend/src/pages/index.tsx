@@ -25,7 +25,7 @@ const Home = ({ error }: HomeProps) => {
     </header>
     <div className="task">
       <section className='todo container'>
-        <TodoNew />
+        {process.env.NODE_ENV === 'development' && <TodoNew />}
         <TodoList />
       </section>
     </div>
