@@ -12,7 +12,7 @@ function TodoNew(): JSX.Element {
     const addClickHandler = () => {
         const id = UUID.v4();
         console.log(id)
-        store.addTodo({id: id, title: title})
+        store.addTodoAsync(title)
         setTitle('');
     }
 
