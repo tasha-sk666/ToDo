@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Todo } from "../types";
 import { observer } from 'mobx-react-lite';
-import { action } from 'mobx';
 import { store } from "../store";
 
 interface TodoItemProps {
@@ -19,7 +18,12 @@ function TodoItem({ todo, deleteTodoItem, updateTodoItem }: TodoItemProps): JSX.
     }
 
     const changeHadler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        store.updateTodo(e.target.value, todo)
+        store.updateTodo(e.target.value, todo);
+    }
+
+    const saveClickHandler = (todo: Todo) => {
+        store.updateTodoAsync(todo);
+        setEditable(false);
     }
 
     return (
@@ -40,10 +44,16 @@ function TodoItem({ todo, deleteTodoItem, updateTodoItem }: TodoItemProps): JSX.
         {editable && 
             <button 
                 className="btn-reset btn btn-save"
+                onClick={() => saveClickHandler(todo)}
             >
                 Save
             </button>}
-        <button className="btn-reset btn btn-delete" onClick={() => deleteTodoItem(todo)}>Del</button>
+        <button 
+            className="btn-reset btn btn-delete" 
+            onClick={() => deleteTodoItem(todo)}
+        >
+            Del
+        </button>
     </li>
    );
 }
