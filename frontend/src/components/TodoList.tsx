@@ -3,10 +3,16 @@ import { Todo } from "../types";
 import TodoItem from "./TodoItem";
 import { observer } from "mobx-react-lite";
 import { store } from "../store";
+import { useEffect } from 'react';
 
 function TodoList(): JSX.Element {
+
+    useEffect(() => {
+        store.getTodosAsync();
+    },[])
+
     const deleteTodo = (todo: Todo) => {
-        store.deleteTodo(todo);
+        store.deleteTodoAsync(todo);
     }
 
     const updateTodo = (title: string, id: string) => {
