@@ -16,6 +16,10 @@
     background: none;
     border: none;
     outline: none;
+
+    svg path {
+        fill: var(--primary-color)
+    }
 }
 
 .clearInverted {
@@ -44,6 +48,30 @@
     color: var(--inverted-primary-color);
     background: var(--inverted-bg-color);
     border: none;
+}
+
+.primary {
+    color: (var(--inverted-bg-color));
+    background: (var(--primary-color));
+    border: none;
+}
+
+.secondary {
+    color: (var(--inverted-bg-color));
+    background: (var(--secondary-color));
+    border: none;
+}
+
+.error {
+    background: #FF4445;
+}
+
+.warning {
+    background: #FF9533;
+}
+
+.notification {
+    background: #339DFF;
 }
 
 .square {

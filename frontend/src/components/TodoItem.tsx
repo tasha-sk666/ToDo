@@ -1,7 +1,13 @@
 import { useState } from 'react';
 import { Todo } from "../types";
 import { observer } from 'mobx-react-lite';
+import Image from 'next/image';
 import { store } from "../store";
+import { ButtonTheme, ButtonSize, Button } from '@/shared/ui/Button';
+import DeleteIcon from '@/shared/assets/icons/delete.svg'
+import EditIcon from '@/shared/assets/icons/edit.svg'
+import DoneIcon from '@/shared/assets/icons/done.svg'
+
 
 interface TodoItemProps {
     todo: Todo;
@@ -35,25 +41,30 @@ function TodoItem({ todo, deleteTodoItem, updateTodoItem }: TodoItemProps): JSX.
             className="task__input"
         />
         {!editable  && 
-            <button 
-                className="btn-reset btn btn-edit"
+            <Button
+                theme={ButtonTheme.CLEAR}
+                size={ButtonSize.M}
                 onClick={editClickHandler}
-                >
-                    Edit
-                </button>}
+            >
+                <EditIcon />
+            </Button>
+        }
         {editable && 
-            <button 
-                className="btn-reset btn btn-save"
+            <Button
+                theme={ButtonTheme.CLEAR}
+                size={ButtonSize.M}
                 onClick={() => saveClickHandler(todo)}
             >
-                Save
-            </button>}
-        <button 
-            className="btn-reset btn btn-delete" 
-            onClick={() => deleteTodoItem(todo)}
-        >
-            Del
-        </button>
+                <DoneIcon />
+            </Button>
+        }
+            <Button
+                theme={ButtonTheme.CLEAR}
+                size={ButtonSize.M}
+                onClick={() => deleteTodoItem(todo)}
+            >
+                <DeleteIcon />
+            </Button>
     </li>
    );
 }
